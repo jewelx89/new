@@ -1,0 +1,179 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: electronicFont;
+  src: url(../font/DS-DIGIB.TTF);
+}
+body {
+  background: url(../images/bg（1）.png) no-repeat;
+  background-size: cover;
+}
+a:hover {
+  text-decoration: none;
+}
+.left {
+  float: left;
+}
+
+.text_right {
+  text-align: right;
+}
+.header {
+  width: 100%;
+  height: 80px;
+  background: url(../images/head_bg.png) no-repeat;
+}
+.header_center {
+  width: 730px;
+  margin: 0px auto;
+  color: #ffffff;
+  text-align: center;
+  height: 80px;
+  background-size: 100% 100%;
+}
+.header_center h2 {
+  margin-top: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.nav {
+  width: 600px;
+  height: 70px;
+  position: relative;
+  top: 0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  /* border-radius: 10px; */
+}
+.nav ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav ul .nav-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* 如果导航栏就六个导航，那么每个导航的宽度都是整个导航
+            的六分之一 */
+  width: calc((100% / 4) * 1);
+  height: 5px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+.nav ul li:nth-child(1):hover ~ .nav-box {
+  left: calc(100% / 4 * 0);
+  background-color: rgb(241, 244, 177);
+}
+.nav ul li:nth-child(2):hover ~ .nav-box {
+  left: calc(100% / 4 * 1);
+  background-color: rgb(84, 163, 243);
+}
+.nav ul li:nth-child(3):hover ~ .nav-box {
+  left: calc(100% / 4 * 2);
+  background-color: #deb6f6;
+}
+.nav ul li:nth-child(4):hover ~ .nav-box {
+  left: calc(100% / 4 * 3);
+  background-color: #ffb1b1;
+}
+.nav ul li {
+  display: inline-block;
+  width: 160px;
+  text-align: center;
+  height: 80px;
+  position: relative;
+  line-height: 60px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.nav ul li a {
+  color: rgb(62, 101, 209);
+  font: 100 21px "优设标题黑";
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 80px;
+}
+.mainbox {
+  display: flex;
+  min-width: 1240px;
+  max-width: 1920px;
+  width: 100%;
+  height: 100%;
+  min-height: 780px;
+  margin: 0 auto;
+  padding: 0.125rem 0.125rem 0;
+}
+.mainbox .column {
+  flex: 3.2;
+}
+.mainbox .column:nth-child(2) {
+  margin: 0 0.8rem 0.25rem;
+  flex: 4.2;
+}
+.panel {
+  position: relative;
+  height: 260px;
+  padding: 0 0.375rem 0.5rem;
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 1rem;
+  background: url(../images/line.png);
+}
+.panel_center {
+  position: relative;
+  height: 33rem;
+  padding: 0 0.375rem 0.5rem;
+  border: 3px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 1rem;
+}
+.panel_bottom {
+  position: relative;
+  height: 20rem;
+  padding: 0 0.375rem 0.5rem;
+  border: 3px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 1rem;
+}
+#chart1,
+#chart3,
+#chart4,
+#chart5,
+#chart6 {
+  height: 15rem;
+}
+#chart2 {
+  height: 14rem;
+}
+#chart_center {
+  height: 33rem;
+}
+
+.panel a {
+  display: inline-block;
+  padding: 10px;
+  color: #e1856e;
+}
+h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 1.3rem;
+}
+a {
+  color: rgb(62, 101, 209);
+  text-decoration: none;
+  margin: 0 0.125rem;
+}
+
+#map {
+  position: relative;
+  height: 17rem;
+  padding: 0 0.375rem 0.5rem;
+  border: 3px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 1rem;
+}

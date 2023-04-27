@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: electronicFont;
+  src: url(../../font/DS-DIGIB.TTF);
+}
+body {
+  background: url(../../images/bg（1）.png) no-repeat;
+  background-size: cover;
+}
+
+a:hover {
+  text-decoration: none;
+}
+.left {
+  float: left;
+}
+.text_right {
+  text-align: right;
+}
+.header {
+  width: 100%;
+  height: 80px;
+  background: url(../../images/head_bg.png) no-repeat;
+}
+.header_center {
+  width: 30%;
+  margin: 0px auto;
+  color: #ffffff;
+  text-align: center;
+  height: 80px;
+  background-size: 100% 100%;
+}
+.header_center h2 {
+  margin-top: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.nav {
+  width: 600px;
+  height: 70px;
+  position: relative;
+  top: 0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  /* border-radius: 10px; */
+}
+.nav ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav ul .nav-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* 如果导航栏就六个导航，那么每个导航的宽度都是整个导航
+            的六分之一 */
+  width: calc((100% / 4) * 1);
+  height: 5px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+.nav ul li:nth-child(1):hover ~ .nav-box {
+  left: calc(100% / 4 * 0);
+  background-color: rgb(241, 244, 177);
+}
+.nav ul li:nth-child(2):hover ~ .nav-box {
+  left: calc(100% / 4 * 1);
+  background-color: rgb(84, 163, 243);
+}
+.nav ul li:nth-child(3):hover ~ .nav-box {
+  left: calc(100% / 4 * 2);
+  background-color: #deb6f6;
+}
+.nav ul li:nth-child(4):hover ~ .nav-box {
+  left: calc(100% / 4 * 3);
+  background-color: #ffb1b1;
+}
+.nav ul li {
+  display: inline-block;
+  width: 160px;
+  text-align: center;
+  height: 75px;
+  position: relative;
+  line-height: 50px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.nav ul li a {
+  color: rgb(62, 101, 209);
+  font: 100 21px "优设标题黑";
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 70px;
+}
+h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+  /* height: 2rem;
+      line-height: 0.2rem;
+      font-weight: 200; */
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.125rem;
+}
+.main {
+  padding: 0 10px 10px;
+}
+.main-left,
+.main-right {
+  float: left;
+  width: 28%;
+  padding: 0 5px;
+}
+.main-middle {
+  float: left;
+  width: 41%;
+  padding: 0 30px;
+}
+
+.border-container {
+  position: relative;
+  margin-top: 30px;
+  padding: 10px;
+  border: 3px solid rgba(25, 186, 139, 0.17);
+}
+.border {
+  position: relative;
+  margin-top: 20px;
+  padding: 10px;
+}
+/* .name-title {
+    font-size: 20px;
+    color: #00ffff;
+  } */
+/* 设定第一个图表家的高度 */
+#radar {
+  height: 350px;
+}
+/* #dormitorydetail {
+    height: 935px;
+  } */
+#graduateyear {
+  height: 330px;
+}
+
+#sexrate,
+#householdrate {
+  height: 250px;
+}
+#mapadd {
+  height: 520px;
+}
+
+#courserate,
+#professionrate,
+#three {
+  height: 250px;
+}
+
+#changedetail {
+  height: 230px;
+}
+#mright {
+  height: 200px;
+}
+#juniorservice {
+  height: 350px;
+}
+#edubalance {
+  height: 330px;
+}
