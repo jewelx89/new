@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>各省份具体分析页面</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/省份布局.css" />
+  </head>
+  <body>
+    <!-- 头部 -->
+    <header class="header left">
+      <div class="nav left">
+        <a href="../index.html">返回</a>
+      </div>
+      <div class="header_center left">
+        <h2>
+          <strong><a>湖北省数据展示</a></strong>
+        </h2>
+      </div>
+    </header>
+    <!--主体-->
+    <div class="main">
+      <!-- 左边模块 -->
+      <div class="main-left">
+        <!-- 公共盒子 border-container -->
+        <div class="border-container">
+          <!-- 左边第一个图表ID -->
+          <h3>主要粮食种类</h3>
+          <div id="radar"></div>
+        </div>
+        <div class="border-container">
+          <!-- 左边第二个大图 -->
+          <h3>粮食播种面积变化</h3>
+          <div id="graduateyear"></div>
+          <!-- 两个被容纳在第二个盒子中的饼图使用 -->
+        </div>
+        <div class="border-container">
+          <h3>播种面积与耕地面积占比</h3>
+          <div id="sexrate"></div>
+        </div>
+      </div>
+      <!-- 中间模块 -->
+      <div class="main-middle">
+        <div class="border-container">
+          <!-- 中间第一个模块 -->
+          <h3>历年粮食产量数据</h3>
+          <div id="mapadd"></div>
+        </div>
+        <div class="border-container">
+          <!-- 第二个模块 -->
+          <h3>历年化肥使用数据</h3>
+          <div id="changedetail"></div>
+        </div>
+      </div>
+      <!-- 右边模块 -->
+      <div class="main-right">
+        <div class="border-container">
+          <h3>农用机械投入量</h3>
+          <div id="first"></div>
+        </div>
+        <div class="border-container">
+          <h3>柴油和农药消耗量</h3>
+          <div id="juniorservice"></div>
+        </div>
+        <div class="border-container">
+          <h3>农用塑料薄膜消耗量</h3>
+          <div id="edubalance"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/echarts.min.js"></script>
+  <script src="js/湖北.js"></script>
+</html>

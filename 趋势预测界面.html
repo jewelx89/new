@@ -1,0 +1,557 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/预测.css" />
+    <title>国以"粮为安-可视化系统</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background: url(images/bg（1）.png) no-repeat;
+        background-size: cover;
+      }
+
+      .containter {
+        position: relative;
+        max-width: 700px;
+        height: 760px;
+        width: 100%;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border: 5px solid rgba(25, 186, 139, 0.17);
+      }
+      .containter .form {
+        margin-top: 30px;
+      }
+      .form .input-box {
+        width: 100%;
+        margin-top: 20px;
+        color: #ffffff;
+        font-size: large;
+        font-weight: 400;
+      }
+      .input-box label {
+        color: #f7f4f4;
+        font-size: large;
+        font-weight: 600;
+      }
+      .form .input-box input {
+        position: relative;
+        height: 50px;
+        width: 100%;
+        outline: none;
+        font-size: 18px;
+        color: #707070;
+        margin-top: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 0 15px;
+      }
+      .form .input-box select {
+        position: relative;
+        height: 40px;
+        width: 100%;
+        font-size: 16px;
+        color: #707070;
+        margin-top: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 0 15px;
+      }
+      .form button {
+        height: 55px;
+        width: 100%;
+        color: #fff;
+        font-size: 1.5rem;
+        border: none;
+        margin-top: 30px;
+        cursor: pointer;
+        border-radius: 6px;
+        font-weight: 400;
+        background-color: rgb(72, 189, 123);
+      }
+      .text_right {
+        text-align: right;
+      }
+      .header {
+        width: 100%;
+        height: 80px;
+        background: url(../images/head_bg.png) no-repeat;
+      }
+      .header_center {
+        width: 730px;
+        margin: 0px auto;
+        color: #ffffff;
+        text-align: center;
+        height: 80px;
+        background-size: 100% 100%;
+      }
+      .header_center h2 {
+        margin-top: 20px;
+        font-size: 30px;
+        text-align: center;
+      }
+      .header_center a {
+        color: rgb(62, 101, 209);
+        text-decoration: none;
+        margin: 0 0.125rem;
+      }
+      .nav {
+        width: 600px;
+        height: 70px;
+        position: relative;
+        top: 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      }
+      .nav ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .nav ul .nav-box {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        /* 如果导航栏就六个导航，那么每个导航的宽度都是整个导航
+            的六分之一 */
+        width: calc((100% / 4) * 1);
+        height: 5px;
+        border-radius: 2px;
+        transition: 0.5s;
+      }
+      .nav ul li:nth-child(1):hover ~ .nav-box {
+        left: calc(100% / 4 * 0);
+        background-color: rgb(241, 244, 177);
+      }
+      .nav ul li:nth-child(2):hover ~ .nav-box {
+        left: calc(100% / 4 * 1);
+        background-color: rgb(84, 163, 243);
+      }
+      .nav ul li:nth-child(3):hover ~ .nav-box {
+        left: calc(100% / 4 * 2);
+        background-color: #deb6f6;
+      }
+      .nav ul li:nth-child(4):hover ~ .nav-box {
+        left: calc(100% / 4 * 3);
+        background-color: #ffb1b1;
+      }
+      .nav ul li {
+        display: inline-block;
+        width: 160px;
+        text-align: center;
+        height: 80px;
+        position: relative;
+        line-height: 60px;
+        margin-top: 15px;
+        box-sizing: border-box;
+        border-radius: 5px;
+      }
+
+      .nav ul li a {
+        color: rgb(62, 101, 209);
+        font: 100 21px "优设标题黑";
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 80px;
+      }
+      .left {
+        float: left;
+      }
+    </style>
+    <script>
+      function jisuan(obj) {
+        var hf = document.getElementById("hf");
+        var bz = document.getElementById("bz");
+        var gg = document.getElementById("gg");
+        var st = document.getElementById("st");
+        var province = document.getElementById("city");
+        if (province.value === "北京") {
+          k1 = 0.005;
+          k2 = 2.4326;
+          k3 = 0.4766;
+          k4 = 0.023;
+          b = -29.5677;
+        }
+        if (province.value === "上海") {
+          k1 = 0.3251;
+          k2 = -6.2205;
+          k3 = 0.677;
+          k4 = 0;
+          b = 2.5879;
+        }
+        if (province.value === "天津") {
+          k1 = 1.9326;
+          k2 = -1.6964;
+          k3 = -0.0654;
+          k4 = 11.5811;
+          b = -1481.1525;
+        }
+        if (province.value === "河北") {
+          k1 = 0.0781;
+          k2 = 4.26;
+          k3 = 0.8871;
+          k4 = 0.6187;
+          b = -7163.7149;
+        }
+        if (province.value === "山西") {
+          k1 = 2.1406;
+          k2 = 3.7204;
+          k3 = 0.3847;
+          k4 = 0.0803;
+          b = -4041.2579;
+        }
+        if (province.value === "内蒙古") {
+          k1 = -1.4915;
+          k2 = -2.875;
+          k3 = 0.49;
+          k4 = 0.201;
+          b = 2707.2653;
+        }
+        if (province.value === "辽宁") {
+          k1 = 0.2282;
+          k2 = -59.6477;
+          k3 = 0.6672;
+          k4 = -0.6951;
+          b = 11910;
+        }
+        if (province.value === "吉林") {
+          k1 = -22.8407;
+          k2 = 326.2941;
+          k3 = 3.8216;
+          k4 = 2.5635;
+          b = -54920;
+        }
+        if (province.value === "黑龙江") {
+          k1 = -0.8176;
+          k2 = 5.4095;
+          k3 = 0.6044;
+          k4 = 0.1917;
+          b = 1609;
+        }
+        if (province.value === "江苏") {
+          k1 = -0.9484;
+          k2 = -27.4646;
+          k3 = 0.4309;
+          k4 = -11.3388;
+          b = 23880;
+        }
+        if (province.value === "浙江") {
+          k1 = 0.8474;
+          k2 = -2.7565;
+          k3 = 0.6158;
+          k4 = -0.1209;
+          b = -565.627;
+        }
+        if (province.value === "安徽") {
+          k1 = 1.9567;
+          k2 = 24.3475;
+          k3 = 0.8244;
+          k4 = 2.5311;
+          b = -23500;
+        }
+        if (province.value === "福建") {
+          k1 = 0.0364;
+          k2 = -1.0709;
+          k3 = 0.489;
+          k4 = -0.0133;
+          b = 217.1274;
+        }
+        if (province.value === "江西") {
+          k1 = 0.6518;
+          k2 = -0.683;
+          k3 = 0.4533;
+          k4 = -0.0434;
+          b = -501.3;
+        }
+        if (province.value === "山东") {
+          k1 = -0.3331;
+          k2 = -1.566;
+          k3 = 0.6255;
+          k4 = 0.2766;
+          b = 1363.431;
+        }
+        if (province.value === "河南") {
+          k1 = 1.3161;
+          k2 = -1.4734;
+          k3 = 0.9158;
+          k4 = -0.2775;
+          b = -8255.0251;
+        }
+        if (province.value === "湖北") {
+          k1 = 0.4593;
+          k2 = -3.7279;
+          k3 = 0.6778;
+          k4 = -0.4766;
+          b = 2242.5319;
+        }
+        if (province.value === "湖南") {
+          k1 = -2.0777;
+          k2 = 3.752;
+          k3 = 0.2754;
+          k4 = 0.423;
+          b = 5783.9915;
+        }
+        if (province.value === "广东") {
+          k1 = -5.8678;
+          k2 = 0.5686;
+          k3 = 0.503;
+          k4 = 0.2323;
+          b = 9987.1807;
+        }
+        if (province.value === "广西") {
+          k1 = 0.978;
+          k2 = -0.8375;
+          k3 = 0.8501;
+          k4 = -0.0538;
+          b = -2325.1233;
+        }
+        if (province.value === "海南") {
+          k1 = -0.1754;
+          k2 = -0.1831;
+          k3 = 0.5374;
+          k4 = 0.3141;
+          b = 14.3294;
+        }
+        if (province.value === "重庆") {
+          k1 = -1.2906;
+          k2 = 3.7795;
+          k3 = 0.4239;
+          k4 = 0.0888;
+          b = 453.055;
+        }
+        if (province.value === "四川") {
+          k1 = -0.2222;
+          k2 = 4.0783;
+          k3 = 0.1532;
+          k4 = 0.1277;
+          b = 14.3294;
+        }
+        if (province.value === "贵州") {
+          k1 = 2.2025;
+          k2 = 0.1859;
+          k3 = 0.612;
+          k4 = -0.0715;
+          b = -2638.4029;
+        }
+        if (province.value === "云南") {
+          k1 = -0.1101;
+          k2 = 1.1487;
+          k3 = 0.2716;
+          k4 = 0.0695;
+          b = 22.4212;
+        }
+        if (province.value === "西藏") {
+          k1 = 0.1705;
+          k2 = 5.7329;
+          k3 = 0.8785;
+          k4 = 0.0088;
+          b = -137.5079;
+        }
+        if (province.value === "陕西") {
+          k1 = 0.8713;
+          k2 = -0.5916;
+          k3 = 0.4769;
+          k4 = -0.02333;
+          b = -1012.2055;
+        }
+        if (province.value === "甘肃") {
+          k1 = 0.6114;
+          k2 = 12.5203;
+          k3 = -0.0493;
+          k4 = 0.0932;
+          b = -1429.9986;
+        }
+        if (province.value === "青海") {
+          k1 = -0.2393;
+          k2 = -0.6968;
+          k3 = 0.0636;
+          k4 = 0.0085;
+          b = 131.3501;
+        }
+        if (province.value === "宁夏") {
+          k1 = -0.3561;
+          k2 = -8.6613;
+          k3 = -0.0036;
+          k4 = -0.0175;
+          b = 945.6784;
+        }
+        if (province.value === "新疆") {
+          k1 = -0.4629;
+          k2 = 1.7333;
+          k3 = 0.8271;
+          k4 = 0.1794;
+          b = 1186.2856;
+        }
+
+        document.querySelector("button").onclick = function () {
+          discount.value = (
+            parseFloat(hf.value) * k1 +
+            parseFloat(bz.value) * k2 +
+            parseFloat(gg.value) * k3 +
+            parseFloat(st.value) * k4 +
+            b
+          ).toFixed(1);
+        };
+      }
+    </script>
+  </head>
+  <body>
+    <!-- 头部制作 -->
+    <header class="header left">
+      <div class="left nav">
+        <ul>
+          <li><a href="index.html">首页面</a></li>
+          <li><a href="政策.html"> 农耕相关政策</a></li>
+          <li>
+            <a href="相关分析页面/page/index.html">相关因素分析</a>
+          </li>
+          <li><a href="趋势预测界面.html">趋势预测</a></li>
+          <div class="nav-box"></div>
+        </ul>
+      </div>
+      <div class="header_center left">
+        <h2>
+          <strong><a>国以"粮"为安-可视化系统</a></strong>
+        </h2>
+      </div>
+    </header>
+    <div class="main">
+      <!-- 左边模块 -->
+      <div class="main-left">
+        <!-- 公共盒子 border-container -->
+        <div class="border-container">
+          <!-- 左边第一个图表ID -->
+          <div id="radar"></div>
+        </div>
+        <div class="border-container">
+          <!-- 左边第二个大图 -->
+          <div id="graduateyear"></div>
+        </div>
+      </div>
+      <!-- 中间模块 -->
+      <div class="main-middle">
+        <div class="border">
+          <div id="mapadd">
+            <section class="containter">
+              <form action="#" class="form">
+                <div class="input-box">
+                  地区:
+                  <select id="city">
+                    <option value="北京">北京</option>
+                    <option value="上海">上海</option>
+                    <option value="天津">天津</option>
+                    <option value="河北">河北</option>
+                    <option value="山西">山西</option>
+                    <option value="内蒙古">内蒙古</option>
+                    <option value="辽宁">辽宁</option>
+                    <option value="吉林">吉林</option>
+                    <option value="黑龙江">黑龙江</option>
+                    <option value="江苏">江苏</option>
+                    <option value="浙江">浙江</option>
+                    <option value="安徽">安徽</option>
+                    <option value="福建">福建</option>
+                    <option value="江西">江西</option>
+                    <option value="山东">山东</option>
+                    <option value="河南">河南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="湖南">湖南</option>
+                    <option value="广东">广东</option>
+                    <option value="海南">海南</option>
+                    <option value="重庆">重庆</option>
+                    <option value="四川">四川</option>
+                    <option value="贵州">贵州</option>
+                    <option value="云南">云南</option>
+                    <option value="西藏">西藏</option>
+                    <option value="陕西">陕西</option>
+                    <option value="甘肃">甘肃</option>
+                    <option value="青海">青海</option>
+                    <option value="宁夏">宁夏</option>
+                    <option value="新疆">新疆</option>
+                  </select>
+                </div>
+                <div class="input-box">
+                  <label>灌溉面积(千公顷)</label>
+                  <input
+                    type="text"
+                    placeholder="请输入灌溉面积"
+                    onchange="jisuan(this);"
+                    id="hf"
+                    type="text"
+                    name="hf"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="input-box">
+                  <label>化肥使用量(万吨)</label>
+                  <input
+                    type="text"
+                    placeholder="请输入化肥使用量"
+                    onchange="jisuan(this);"
+                    id="bz"
+                    type="text"
+                    name="bz"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="input-box">
+                  <label>播种面积(千公顷)</label>
+                  <input
+                    type="text"
+                    placeholder="请输入播种面积"
+                    onchange="jisuan(this);"
+                    id="gg"
+                    type="text"
+                    name="gg"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="input-box">
+                  <label>水土流失治理面积(千公顷)</label>
+                  <input
+                    type="text"
+                    placeholder="请输入水土流失治理面积"
+                    onchange="jisuan(this);"
+                    id="st"
+                    type="text"
+                    name="st"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="input-box">
+                  <label>预计粮食产量(万吨)</label>
+                  <input
+                    type="text"
+                    id="discount"
+                    type="text"
+                    name="discount"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <button type="button" id="button_id">开始预测</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+      <!-- 右边模块 -->
+      <div class="main-right">
+        <div class="border-container">
+          <div id="juniorservice"></div>
+        </div>
+        <div class="border-container">
+          <div id="edubalance"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script src="js/预测.js"></script>
+</html>

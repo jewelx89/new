@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: electronicFont;
+  src: url(../font/DS-DIGIB.TTF);
+}
+body {
+  background: url(../images/bg.jpg) no-repeat;
+  background-size: cover;
+}
+
+a:hover {
+  text-decoration: none;
+}
+.left {
+  float: left;
+}
+.text_right {
+  text-align: right;
+}
+.header {
+  width: 100%;
+  height: 80px;
+  /* background: url(../../images/head_bg.png) no-repeat; */
+}
+.header_center {
+  width: 75%;
+  margin: 0px auto;
+  color: #ffffff;
+  text-align: center;
+  height: 80px;
+  background-size: 100% 100%;
+}
+.header_center h2 {
+  margin-top: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.nav {
+  width: 100px;
+  height: 70px;
+  margin-left: 100px;
+  position: relative;
+  top: 0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background: url(../images/bg1.png) no-repeat;
+}
+
+.nav a {
+  color: rgb(62, 101, 209);
+  font: 100 26px "优设标题黑";
+  margin-left: 20px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 70px;
+}
+
+h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+}
+h3 {
+  margin: 4px;
+  color: #1fc3f0;
+  text-align: center;
+  font-size: 2rem;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.125rem;
+}
+.main {
+  padding: 0 30px 30px;
+}
+.main-left,
+.main-right {
+  float: left;
+  width: 28%;
+  padding: 0 10px;
+}
+.main-middle {
+  float: left;
+  width: 44%;
+  padding: 0 10px;
+}
+
+.border-container {
+  position: relative;
+  margin-top: 5px;
+  padding: 10px;
+}
+
+.three-pie {
+  border-top: 1px solid rgba(25, 186, 139, 0.17);
+  margin: -10px;
+  margin-top: 10px;
+}
+.teacher-pie {
+  border-bottom: 1px solid rgba(25, 186, 139, 0.17);
+  margin: -10px;
+  margin-bottom: 0;
+}
+.three-pie li,
+.teacher-pie li {
+  float: left;
+  width: 50%;
+  border-right: 1px solid rgba(25, 186, 139, 0.17);
+}
+
+#radar {
+  height: 290px;
+}
+
+#graduateyear {
+  height: 184px;
+}
+#sexrate {
+  height: 210px;
+}
+#mapadd,
+#changedetail {
+  height: 360px;
+}
+
+#first {
+  height: 225px;
+}
+#juniorservice {
+  height: 225px;
+}
+#edubalance {
+  height: 225px;
+}

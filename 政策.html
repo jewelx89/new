@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>国以"粮为安-可视化系统</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: url(images/bg（1）.png) no-repeat;
+        background-size: cover;
+      }
+      .header {
+        width: 100%;
+        height: 80px;
+        background: url(images/head_bg.png) no-repeat;
+      }
+      .header_center {
+        width: 730px;
+        margin: 0px auto;
+        color: #ffffff;
+        text-align: center;
+        height: 80px;
+        background-size: 100% 100%;
+      }
+      .header_center h2 {
+        margin-top: 20px;
+        font-size: 30px;
+        text-align: center;
+      }
+      .nav {
+        width: 600px;
+        height: 70px;
+        position: relative;
+        top: 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        /* border-radius: 10px; */
+      }
+      .nav ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .nav ul .nav-box {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        /* 如果导航栏就六个导航，那么每个导航的宽度都是整个导航
+            的六分之一 */
+        width: calc((100% / 4) * 1);
+        height: 5px;
+        border-radius: 2px;
+        transition: 0.5s;
+      }
+      .nav ul li:nth-child(1):hover ~ .nav-box {
+        left: calc(100% / 4 * 0);
+        background-color: rgb(241, 244, 177);
+      }
+      .nav ul li:nth-child(2):hover ~ .nav-box {
+        left: calc(100% / 4 * 1);
+        background-color: rgb(84, 163, 243);
+      }
+      .nav ul li:nth-child(3):hover ~ .nav-box {
+        left: calc(100% / 4 * 2);
+        background-color: #deb6f6;
+      }
+      .nav ul li:nth-child(4):hover ~ .nav-box {
+        left: calc(100% / 4 * 3);
+        background-color: #ffb1b1;
+      }
+      .nav ul li {
+        display: inline-block;
+        width: 160px;
+        text-align: center;
+        height: 80px;
+        position: relative;
+        line-height: 60px;
+        margin-top: 15px;
+        box-sizing: border-box;
+        border-radius: 5px;
+      }
+
+      .nav ul li a {
+        color: rgb(62, 101, 209);
+        font: 100 21px "优设标题黑";
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 80px;
+      }
+      h2 {
+        color: #a84912;
+        text-align: center;
+        font-size: 1.75rem;
+      }
+      a {
+        color: rgb(62, 101, 209);
+        text-decoration: none;
+        margin: 0 0.125rem;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+      .left {
+        float: left;
+      }
+      .text_right {
+        text-align: right;
+      }
+      .i-wrap {
+        clear: both;
+        width: 1148px;
+        margin: 1px auto 0px;
+        overflow: hidden;
+        padding: 18px 20px 0px;
+      }
+      .b-wrap {
+        clear: both;
+        width: 1900px;
+        margin: 1px auto 0px;
+        overflow: hidden;
+        padding: 10px 20px 0px;
+      }
+      .img-index {
+        width: 1900px;
+        height: 200px;
+        overflow: hidden;
+      }
+      .fl {
+        float: Left;
+      }
+      .news-index {
+        width: 1100px;
+        height: 540px;
+        overflow: hidden;
+        border: 2px solid rgba(34, 158, 121, 0.824);
+      }
+      .news-title {
+        float: left;
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+        margin-top: 15px;
+      }
+      .news_c {
+        float: left;
+        width: 580px;
+        padding: 8px 0 6px;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+      ul,
+      li {
+        list-style-type: none;
+        text-transform: capitalize;
+        margin: 0;
+      }
+      .news_c {
+        float: left;
+        width: 500px;
+        padding: 8px 0 6px;
+        overflow: hidden;
+      }
+      ul {
+        display: block;
+        list-style-type: disc;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+      }
+      ul,
+      li {
+        list-style-type: none;
+        text-transform: capitalize;
+        margin: 0;
+      }
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+      }
+      ul,
+      ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .news_c li {
+        float: left;
+        width: 500px;
+        height: 31px;
+        padding-left: 17px;
+        line-height: 31px;
+        overflow: hidden;
+        background: url(images/ico.jpg) no-repeat 6px 14px;
+      }
+      .news_c a {
+        color: #b0dae5;
+        font-size: large;
+        text-decoration: none;
+      }
+      .news_c a:hover {
+        color: rgb(237, 34, 23);
+      }
+      cite {
+        float: right;
+        color: #eec076;
+        font-size: large;
+        font-style: normal;
+      }
+      .text_overflow {
+        float: left;
+      }
+      .focus {
+        width: 570px;
+        overflow: hidden;
+        /* background: #fff; */
+        margin-top: 30px;
+      }
+      .fr {
+        float: left;
+      }
+      .img-index img {
+        float: left;
+        margin-left: 60px;
+        margin-top: 30px;
+        width: 200px;
+        height: 140px;
+      }
+      .tit {
+        height: 30px;
+      }
+      .tit h3 {
+        font-size: 1.75rem;
+        color: #ffffff;
+        border-bottom: 2px solid #0b6cb8;
+        padding-bottom: 10px;
+      }
+      .tit a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 24px;
+        margin: 0 0.125rem;
+      }
+      #screen {
+        width: 9999px;
+        height: 9999px;
+        animation: 8s fdsafdaf infinite;
+      }
+      #screen img {
+        float: left;
+      }
+      #tv {
+        width: 500px;
+        height: 400px;
+        overflow: hidden;
+      }
+      @keyframes fdsafdaf {
+        0% {
+        }
+        25% {
+          transform: translateX(0px);
+        }
+        30% {
+          transform: translateX(0px);
+        }
+
+        50% {
+          transform: translateX(-500px);
+        }
+        55% {
+          transform: translateX(-500px);
+        }
+        75% {
+          transform: translateX(-1000px);
+        }
+        80% {
+          transform: translateX(-1000px);
+        }
+        100% {
+          transform: translateX(-1500px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 头部制作 -->
+    <header class="header left">
+      <div class="left nav">
+        <ul>
+          <li><a href="index.html">首页面</a></li>
+          <li><a href="政策.html"> 农耕相关政策</a></li>
+          <li>
+            <a href="相关分析页面/page/index.html">相关因素分析</a>
+          </li>
+          <li><a href="趋势预测界面.html">趋势预测</a></li>
+          <div class="nav-box"></div>
+        </ul>
+      </div>
+      <div class="header_center left">
+        <h2>
+          <strong><a>国以"粮"为安-可视化系统</a></strong>
+        </h2>
+      </div>
+    </header>
+    <!-- 主体制作 -->
+    <div class="i-wrap">
+      <div class="news-index f1">
+        <div class="news-title">
+          <h2>最新粮讯</h2>
+        </div>
+        <div class="news-hot"></div>
+        <ul class="news_c">
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-04/07/content_274314.shtml"
+              title="江苏省粮食和物资储备工作会议在南京召开"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  江苏省粮食和物资储备工作会议在南京召开
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-04/04/content_274234.shtml"
+              title="新疆粮食和物资储备局法治培训专题讲座开讲"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  新疆粮食和物资储备局法治培训专题讲座开讲
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-04/14/content_274379.shtml"
+              title="江苏省粮食和物资储备系统警示教育现场会在扬州召开"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  江苏省粮食和物资储备系统警示教育现场会在扬州召开
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-04/11/content_274347.shtml"
+              title="四川省第五届粮食行业职业技能竞赛成功举办"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  四川省第五届粮食行业职业技能竞赛成功举办
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/31/content_274190.shtml"
+              title="四川省粮食和物资储备局调研督导粮食产业发展项目"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  四川省粮食和物资储备局调研督导粮食产业发展项目
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/30/content_274173.shtml"
+              title="《甘肃省粮食储备安全管理办法》专题培训班成功举办"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  《甘肃省粮食储备安全管理办法》专题培训班成功举办
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/29/content_274168.shtml"
+              title="山西省粮食和物资储备局召开粮食产业发展座谈会"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  山西省粮食和物资储备局召开粮食产业发展座谈会
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/23/content_274129.shtml"
+              title="河北省粮食和物资储备局检查秋粮收购情况"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  河北省粮食和物资储备局检查秋粮收购情况
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/21/content_274104.shtml"
+              title="陕西省2022年度粮食安全责任制实地考核工作全面启动"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  陕西省2022年度粮食安全责任制实地考核工作全面启动
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/17/content_274075.shtml"
+              title="天津市粮食和物资储备工作会议召开"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">天津市粮食和物资储备工作会议召开</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/15/content_273987.shtml"
+              title="辽宁省粮食和物资储备系统警示教育会议在沈阳召开"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  辽宁省粮食和物资储备系统警示教育会议在沈阳召开
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/14/content_273964.shtml"
+              title="北京市粮食和物资储备系统警示教育大会召开"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  北京市粮食和物资储备系统警示教育大会召开
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://www.lswz.gov.cn/html/hybd2023/2023-03/10/content_273948.shtml"
+              title="浙江省粮食和物资储备局召开警示教育视频会议"
+            >
+              <div class="text_overflow" style="width: 460">
+                <div class="text_con">
+                  浙江省粮食和物资储备局召开警示教育视频会议
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <div id="tv" class="focus fr">
+          <div id="screen">
+            <img src="images/sss.png" width="500" height="400" />
+
+            <img src="images/222.jpg" width="500" height="400" />
+            <img src="images/1000.png" width="500" height="400" />
+            <img src="images/999.jpg" width="500" height="400" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-wrap">
+      <div class="tit">
+        <h3><a>友情链接</a></h3>
+      </div>
+      <div class="img-index">
+        <a href="http://www.25rj.com/"
+          ><img src="images/农用机械交易平台.png" alt=""
+        /></a>
+        <a
+          href="https://b2b.baidu.com/ss?q=%E5%85%A8%E5%9B%BD%E5%86%9C%E7%94%A8%E5%8C%96%E8%82%A5%E9%87%87%E8%B4%AD%E7%BD%91&from=b2b_straight&srcid=5103&from_restype=product&pi=baidu.b2b_straight.title"
+          ><img src="images/化肥采购平台.png" alt=""
+        /></a>
+        <a href="http://www.grainmarket.com.cn/centerweb/biddingFair"
+          ><img
+            src="images/蓝绿色乡村振兴金线手绘乡村振兴插画手绘公益宣传中文微信公众号封面.png"
+            alt=""
+        /></a>
+        <a href="http://www.lswz.gov.cn/"><img src="images/11.jpg" alt="" /></a>
+        <a href="http://www.agri.cn/"><img src="images/12.jpg" alt="" /></a>
+      </div>
+    </div>
+  </body>
+</html>
